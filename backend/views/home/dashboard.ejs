@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+			<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+			<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css?family=Abel&display=swap" rel="stylesheet">
+			
+			<style type="text/css">
+				body{margin-top:20px;}                                                                    
+			</style>
+		
+		
+
+
+		</head>
+
+	<body>
+
+	<div style="text-align: right; font-family: 'Raleway', sans-serif;">
+		
+		<a href = "/page/users/property_page" class = "btn btn-primary" >Home</a> 
+	<div style="text-align: right; font-family: 'Raleway', sans-serif;" >
+
+	<div style="text-align: right; display: block;  font-family: 'Raleway', sans-serif;" >
+		
+		<a href = "/users/users/logout" class = "btn btn-primary">logout</a>
+	<div style="text-align: right; font-family: 'Raleway', sans-serif;" >
+
+<hr>
+<div class="container bootstrap snippet">
+    <div class="row">
+        <div class="col-sm-10">
+            <h1><%= user.firstname %></h1></div>
+        <div class="col-sm-2">
+            <a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
+        </div>
+    </div>
+   
+        <!--/col-3-->
+        <div class="col-sm-9">
+            <ul class="nav nav-tabs" id="myTab">              
+               
+                <li><a href="#settings" data-toggle="tab">Settings</a></li>
+            </ul>         
+                
+              <div class="tab-pane" id="settings">
+
+                    <hr>
+                    <form class="form" action="##" method="post" id="registrationForm">
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="first_name">
+                                    <h4>firstname</h4></label>
+                                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any." value="<%= user.firstname %>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="last_name">
+                                    <h4>lastname</h4></label>
+                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any." value="<%= user.lastname %>">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="phone">
+                                    <h4>phone number</h4></label>
+                                <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any."
+                                value= "<%= user.phone_number %>">
+                            </div>
+                        </div>
+
+                        
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="email">
+                                    <h4>Email</h4></label>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email." value="<%= user.email%>">
+                            </div>
+                        </div>
+
+                         <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="email">
+                                    <h4>role</h4></label>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email." value="<%= user.role%>">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <br>
+                         
+                         <div style="display: inline">
+                            <form action="#" method="post" >
+                                <button type="submit" class="btn btn-success">Edit</button>
+
+                            </form>
+                               
+                            <form action="#" method="post">
+                                <button type="submit" class="btn btn-success">Delete</button>
+                            </form> 
+                         </div>
+                                
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <!--/tab-pane-->
+        </div>
+        <!--/tab-content-->
+
+    </div>
+    <!--/col-9-->
+</div>
+<!--/row-->
+
+
+
+
+
+<%- include('../partials/footer'); %>

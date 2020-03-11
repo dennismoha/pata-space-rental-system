@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>PATA SPACE</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="Pata space system">
+	<meta name="keywords" content="office,house">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Favicon -->   
+	<link href="/images/favicon.ico" rel="shortcut icon"/>
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="/stylesheet/bootstrap.min.css"/>
+	<link rel="stylesheet" href="/stylesheet/font-awesome.min.css"/>
+	<link rel="stylesheet" href="/stylesheet/animate.css"/>
+	<link rel="stylesheet" href="/stylesheet/owl.carousel.css"/>
+	<link rel="stylesheet" href="/stylesheet/style.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+
+	<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+<body>
+	<!-- Page Preloder -->
+	<!-- <div id="preloder">
+		<div class="loader"></div>
+	</div> -->
+	
+	<!-- Header section -->
+	<header class="header-section">
+		<div class="header-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 header-top-left">
+						<div class="top-info">
+							<i class="fa fa-phone"></i>
+							(+254) 791 000 000
+						</div>
+						<div class="top-info">
+							<i class="fa fa-envelope"></i>
+							pataspace@gmail.com
+						</div>
+					</div>
+					<div class="col-lg-6 text-lg-right header-top-right">
+						<div class="top-social">
+							<a href="#"><i class="fa fa-facebook"></i></a>
+							<a href="#"><i class="fa fa-twitter"></i></a>
+							<a href="#"><i class="fa fa-instagram"></i></a>
+							<a href="#"><i class="fa fa-pinterest"></i></a>
+							<a href="#"><i class="fa fa-linkedin"></i></a>
+						</div>
+
+						<% if(!currentUser) {%>
+						<div class="user-panel">
+							<a href="/page/users/signup_page"><i class="fa fa-user-circle-o"></i> Register</a>
+							<a href="/page/users/login"><i class="fa fa-sign-in"></i> Login</a>
+						</div>
+
+						<% } else if(currentUser.role == 'admin'){ %>
+						<div class="user-panel">
+							<a href="/users/users/logout"><i class="fa fa-user-circle-o"></i> Logout</a>
+							<a href="/page/admin/page"><i class="fa fa-sign-in"></i> Admin Dashboard</a>
+						</div>
+
+						<% } else if(currentUser.role == 'user') {%>
+						<div class="user-panel">
+							<a href="/users/users/logout"><i class="fa fa-user-circle-o"></i> Logout</a>
+							<a href="/page/users/dashboard_pagee"><i class="fa fa-sign-in"></i> profile </a>
+						</div>
+
+						<% } else if(currentUser.role == 'landlord'){ %>
+							<div class="user-panel">
+							<a href="/users/users/logout"><i class="fa fa-user-circle-o"></i> Logout</a>
+							<a href="/page/landlord/dashboard_page"><i class="fa fa-sign-in"></i> landlord Dashboard</a>
+							<a href="/page/users/dashboard_pagee"><i class="fa fa-sign-in"></i> landlord profile</a>
+						</div>
+						<% } %> 
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="site-navbar">
+						<!-- <a href="#" class="site-logo"><img src="/images/logo.png" alt=""></a> -->
+						<a href="#" class="site-logo" id="loogo">PATA SPACE</a>
+						<div class="nav-switch">
+							<i class="fa fa-bars"></i>
+						</div>
+						<ul class="main-menu">
+							<%if(!currentUser) {%>
+								<li><a href="/property/property/user_landing_property_page">Home</a></li>
+								<li><a href="/page/users/about_page">ABOUT US</a></li>
+								<li><a href="contact.html">Contact</a></li>
+						<%} else {%>
+								<li><a href="/property/property/user_landing_property_page">Home</a></li>
+								<li><a href="/page/users/about_page">ABOUT US</a></li>
+								<li><a href="contact.html">Contact</a></li>
+								<li><a href="#">properties</a></li>
+						<%}%>
+							
+							<!-- <li><a href="#">properties</a></li> -->
+							
+							<!-- <li><a href="single-list.html">Pages</a></li>
+							<li><a href="blog.html">Blog</a></li> -->
+							
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- Header section end -->

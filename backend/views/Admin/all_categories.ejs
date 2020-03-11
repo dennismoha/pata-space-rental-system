@@ -1,0 +1,45 @@
+<%- include('../partials/admin/header'); %>
+<%- include('../partials/admin/navbar'); %>
+<%- include('../partials/admin/sidenav'); %>
+
+  <div class = "container">
+    <div class="row">
+      <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">category name</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+     
+    </tr>
+  </thead>
+  <tbody>
+     <% category.forEach(function(category){%>
+        <tr>
+          <th scope="row">-</th>
+          <td><a href="#"><%=category.name %></td>
+          <td><button class="btn btn-success">Edit</button></td>
+          <td><button class="btn btn-danger">Delete</button></td>
+          
+        </tr>  
+    <% }) %>
+  </tbody>
+</table>
+      
+
+    </div>
+
+  </div>
+
+
+  
+  </div>
+
+
+  
+      </div>
+    </main>
+  </div>
+</div>
+<%- include('../partials/footer'); %>

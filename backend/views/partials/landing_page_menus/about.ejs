@@ -1,0 +1,17 @@
+
+
+<div class="row text-center" style = "display:flex; flex-wrap: wrap;">
+<% about.forEach(function(about){%>
+          <div class="col-lg-4 col-sm-6">
+              <div class="thumbnail">    
+                 
+               <div class = "caption" >
+              	 <h4> <%= about.title %> </h4>
+                
+               </div>     
+               <h4> <%= about.content %> </h4>                         
+              
+              </div>
+         </div>              
+     <% }) %>
+  <div class="row text-center" style = "display:flex; flex-wrap: wrap;">

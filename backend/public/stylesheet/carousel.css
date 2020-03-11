@@ -1,0 +1,10 @@
+
+
+#right_curtain .carousel-inner img {
+  object-fit: cover;
+}
+
+ .padd{
+	padding-bottom: 40px; 
+	height: 40px;
+}

@@ -1,0 +1,35 @@
+<%- include('../partials/landlord/header'); %>
+	<%- include('../partials/landlord/navbar'); %>
+	<%- include('../partials/landlord/sidenave'); %>	
+
+	   
+    
+
+<% property.forEach(function(property){%>
+	 <div class="card-deck" style="margin: 10px;">
+
+		  <div class="card">
+		  	     <h5 class="card-title"><%= property.title %></h5>
+		  	     <div style="position: relative;left:150px">
+		    		<img src="<%=property.photo %>" class="card-img-top" style="height: 50%;width: 50%" alt="no pic">
+				 </div>
+		    <div class="card-body">
+		 
+		      <p class="card-text"><%= property.description %></p>
+		      <p class="card-text"><small class="text-muted"><%= property.price %></small></p>
+		    </div>
+  </div>
+</div>
+      	 <% }) %>
+
+
+      <%- include('../partials/footer'); %>
+
+      
+      
+    </main>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+Pata space Kenya is an online house and office listing system that links the house owner, we the pata space  and the customer in looking for a convinient house or office space in Nairobi.
+can we include a google map that shows people location of other industries in
+ 	town?
+
+The agreement to meet with the house owner incorporates?
+	his name,
+
+how will each house manager be given the account to manage his/her house?
+	I need a good backend that generates a unique id for each house manager,
+	and captures his detail. Upon creation of an account with us,he/she has got 
+	his space and is allowed to post his house.
+
+how will the payment be handled??
+
+	each landlord has to pay 100kes for each building and a commission for each
+	house gotten throught the system.. a  sample
+
+problem definition:
+	
+
+
+merits:
+	can provide enought knowledge to the landlord or landlady which of his 
+	house is empty or occupied.
+	the landlady/landlord can make some of the improvements based on the user
+	reviews provided by the users
+	can reduce tarmacking for consumers looking for houses and thus saving a lot of time
+	help combart online spamming as the user will be sure of what he sees, is 
+	legit
+
+//system working
+	if a client likes a house or on office and the premise is not vacant,
+	the owner can tell if it's soon going to be vacant or not and in this way
+	the client can be able to book through our system 'at a fee'
+	
+	house is removed from the portal after it has been sold
+
+//other things
+	we can help users look for a house at a small fee
+	house comparison feature
+	user feedback upon entering a new house
+
+
+
+====sources:
+	https://www.nation.co.ke/lifestyle/dn2/smart-house-hunting/957860-5013504-lruv1f/index.html
+      //project downfall https://en.wikipedia.org/wiki/Internet_real_estate
+     //nairobi urbanisation stats https://earthobservatory.nasa.gov/images/88822/nairobi-swells-with-urban-growth 
+					//http://worldpopulationreview.com/world-cities/nairobi-population/
+
+	//online real estate history   //https://www.nar.realtor/sites/default/files/documents/2018-real-estate-in-a-digital-world-12-12-2018.pdf
+	// smartphone internet users  //https://www.standardmedia.co.ke/business/article/2001300304/real-estate-goes-online
+	//nairobi residential area link //:https://en.wikipedia.org/wiki/Category:Suburbs_of_Nairobi
+	// nairobi constituency  //:https://en.wikipedia.org/wiki/Nairobi
+	//what is sampling 	//:http://denninginstitute.com/modules/dau/stat/data/sample_frm.html
+	//data collection methods //:https://bbamantra.com/methods-of-data-collection-primary-and-secondary-data/
+	//simple random sampling //https://en.wikipedia.org/wiki/Simple_random_sample
+	//sampling techniques //https://towardsdatascience.com/sampling-techniques-a4e34111d808
+	//data collection methods //https://www.leadquizzes.com/blog/data-collection-methods/

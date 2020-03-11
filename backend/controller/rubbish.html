@@ -1,0 +1,172 @@
+
+
+<%- include('../partials/admin/header'); %>
+<%- include('../partials/admin/navbar'); %>
+<%- include('../partials/admin/sidenav'); %>           
+  
+
+
+  <div class = "container">
+    <div class="row">
+      <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">firstname</th>
+      <th scope="col">lastname</th>
+      <th scope="col">email</th>
+       <th scope="col">Role</th>
+    </tr>
+  </thead>
+  <tbody>
+     <% users.forEach(function(user){%>
+        <tr>
+          <th scope="row">-</th>
+          <td><a href="/users/users/getUser/<%=user.id%>"><%=user.firstname %></td>
+          <td><%=user.lastname %></td>
+          <td><%=user.email %></td>
+          <td><%=user.role %></td>
+        </tr>  
+    <% }) %>
+  </tbody>
+</table>
+    </div>
+  </div>
+
+ 
+
+     
+      </div>
+    </main>
+  </div>
+</div>
+
+
+
+AIzaSyD9CCos4Hr7vALHlinM284Mj1lC4QlkL-Y
+
+/==========google maps api key =================
+AIzaSyD9CCos4Hr7vALHlinM284Mj1lC4QlkL-Y
+
+
+
+
+
+
+
+
+
+
+<div class = "container-fluid" style="height: 500px;position: relative;padding-top: 2px;">
+    
+        <div id="carouselExampleSlidesOnly " class="carousel slide"  data-ride="carousel"  >
+          <div class="carousel-inner right_curtain"  style="position: absolute; height: 498px;">
+            <div class="carousel-item active">
+              <img class="d-block w-100" src="/images/1582019573018codeblauw.jpg" style="height: 498px;"  alt="First slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="/images/1582027287305_epicaa.jpg"  style="height: 498px;" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="/images/1582027830424_epica.jpg"  style="height: 498px;" alt="Third slide">
+            </div>
+          </div>
+      </div>  
+  </div>
+
+
+
+<
+
+
+
+
+
+
+div class="album py-5 bg-light">
+    <div class="container" style="background-color: grey;margin-top: 5px;padding:10px;">
+      <% property.forEach(function(property){%>
+      <div class="row">
+        
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <%= property.title %>
+            <div class="card-body">
+              <p class="card-text"><img src="<%= property.photo %>" alt = "no image"></p> <br />
+              <p class="card-text"><%= property.description %></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Sold <%= property.sold %></button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Remaining: <%= property.quantity %></button>
+                </div>
+                <small class="text-muted">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div> 
+
+
+
+      </div>
+      <% }) %>
+    </div>
+  </div>
+
+  <div class = "container">
+    <div class="row">
+      <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">category</th>
+      <th scope="col">Description</th>
+      <th scope="col">Id</th>
+    </tr>
+  </thead>
+  <tbody>
+     <% property.forEach(function(property){%>
+        <tr>
+          <th scope="row">-</th>
+          <td><%=property.title %></td>
+          <td><%=property.description %></td>
+          <td><%=property.id %></td>
+        </tr>  
+    <% }) %>
+  </tbody>
+</table>
+      
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+   
+
+
+     
+
+
+
+   
+
+  <%- include('../partials/footer'); %>

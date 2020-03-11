@@ -1,0 +1,41 @@
+users /customers model..where they can sign in and login
+	-username
+	-email
+	-password 
+	-phone number Type:number, unique, size, not greater than 10
+	
+//landlords model
+	--firstname, 
+	--lastname,
+	--email
+	--house_pic type: blob referencing--> house model
+	--phone_number
+	--
+//pages
+	-->user
+	--> landlord
+	--> admin
+	--> house pages
+
+	1) -> user pages
+		user signup page --contains the signup/login form
+		after user signs up, he/she is taken to page that displays all the available houses
+		Incase a user clicks a  specific house, another page {SHOW PAGE} for with that house info
+			-show page{house name, pictures/videos,price, user reviews,more details about the house, map_field,contacts}
+			`each house should have a contacts page for user to talk to the owner of the house`
+
+	2) landlord page
+		different route for landlord
+			singup/login page for the landlord
+			4 pages where he can create, read, update or delete houses.
+			another page where he can check communication with the users
+			
+		
+
+
+
+
+//==user mandates
+	the user can only read data but no editing.
+	the user can send a text to the landlord incase of any issue
+	

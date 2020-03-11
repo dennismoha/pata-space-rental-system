@@ -1,0 +1,213 @@
+
+<%- include('../partials/header'); %>
+	<!-- Hero section -->
+  <section class="hero-section set-bg" data-setbg="/images/bg.jpg">
+    <div class="container hero-text text-white">
+      <h2>find your house, office or shop with our local life style</h2>
+      <p>Search real estate properties, houses, condos,shops and offices on pata space®.<br>Find house, shop or office info from the most comprehensive source data.</p>
+      <a href="/page/users/about_page" class="site-btn">VIEW DETAIL</a> 
+    </div>
+  </section>
+  <!-- Hero section end -->
+
+
+  <!-- Filter form section -->
+  <div class="filter-search">
+    <div class="container">
+      <form class="filter-form">
+        <input type="text" placeholder="Enter a street name, address number or keyword">
+        <select>
+          <option value="City">City</option>
+        </select>
+        <select>
+          <option value="City">State</option>
+        </select>
+        <button class="site-btn fs-submit">SEARCH</button>
+      </form>
+    </div>
+  </div>
+  <!-- Filter form section end -->
+
+
+
+  <!-- Properties section -->
+  <section class="properties-section spad">
+    <div class="container">
+      <div class="section-title text-center">
+        <h3>RECENT PROPERTIES</h3>
+        <p>Discover  the latest properties unoccupied properties </p>
+      </div><!--
+      <div class="row">
+        <div class="col-md-6">
+          <div class="propertie-item set-bg" data-setbg="/images/propertie/1.jpg">
+            <div class="sale-notic">FOR SALE</div>
+            <div class="propertie-info text-white">
+              <div class="info-warp">
+                <h5>176 Kingsberry, Dr Anderson</h5>
+                <p><i class="fa fa-map-marker"></i> Rochester, NY 14626</p>
+              </div>
+              <div class="price">$1,777,000</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="propertie-item set-bg" data-setbg="/images/propertie/2.jpg">
+            <div class="rent-notic">FOR Rent</div>
+            <div class="propertie-info text-white">
+              <div class="info-warp">
+                <h5>45 Lianne Dr, Greece Street</h5>
+                <p><i class="fa fa-map-marker"></i> Tasley, VA 23441</p>
+              </div>
+              <div class="price">$1255/month</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="propertie-item set-bg" data-setbg="/images/propertie/3.jpg">
+            <div class="sale-notic">FOR SALE</div>
+            <div class="propertie-info text-white">
+              <div class="info-warp">
+                <h5>6101 Aqua Ave Apt 603</h5>
+                <p><i class="fa fa-map-marker"></i> Miami Beach, FL 33141</p>
+              </div>
+              <div class="price">$150,000</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="propertie-item set-bg" data-setbg="/images/propertie/4.jpg">
+            <div class="rent-notic">FOR Rent</div>
+            <div class="propertie-info text-white">
+              <div class="info-warp">
+                <h5>339 N Oakhurst Dr Apt 303</h5>
+                <p><i class="fa fa-map-marker"></i> Beverly Hills, CA 90210</p>
+              </div>
+              <div class="price">$3000/month</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+  <!-- Properties section end -->
+
+
+  <!-- Services section -->
+  <section class="services-section spad set-bg" data-setbg="/images/service-bg.jpg">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          </images src="/images/service.jpg" alt="">
+        </div>
+        <div class="col-lg-5 offset-lg-1 pl-lg-0">
+          <div class="section-title text-white">
+            <h3>OUR SERVICES</h3>
+            <p>We provide the perfect service for </p>
+          </div>
+          <div class="services">
+            <div class="service-item">
+              <i class="fa fa-comments"></i>
+              <div class="service-text">
+                <h5>Agent / landlord advertisement platform</h5>
+                <p> Agent / landlord signs up with us and we give them a platform for advertisement of their properties<p>
+              </div>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Services section end -->
+
+
+  <!-- feature section -->
+  <section class="feature-section spad">
+    <div class="container">
+      <div class="section-title text-center">
+        <h3> properties</h3>
+        <p>Browse houses and flats for sale and to rent in your area</p>
+      </div>
+      <div class="row">
+        <% property.forEach(function(property){%>
+        <div class="col-lg-4 col-md-6">
+          <!-- feature -->
+            
+          <div class="feature-item">
+             
+            <div class="feature-pic set-bg" data-setbg="<%= property.photo %>">
+              <div class="sale-notic">FOR SALE</div>
+            </div>
+            <div class="feature-text">
+              <div class="text-center feature-title">
+                <h5><%= property.title %></h5> 
+                <p><i class="fa fa-map-marker"></i> Los Angeles, CA 90034</p><!-- LOCATION DETAILS WILL COME HERE -->
+              </div>
+              <div class="room-info-warp">
+                <div class="room-info">
+                  <div class="rf-left">
+                    <p><i class="fa fa-th-large"></i> 800 Square foot</p>
+                    <p><i class="fa fa-bed"></i> 10 Bedrooms</p>
+                  </div>
+                  <div class="rf-right">
+                    <p><i class="fa fa-car"></i> 2 Garages</p>
+                    <p><i class="fa fa-bath"></i> 6 Bathrooms</p>
+                  </div>  
+                </div>
+                <div class="room-info">
+                  <div class="rf-left">
+                    <p><i class="fa fa-user"></i> Tony Holland</p>
+                  </div>
+                  <div class="rf-right">
+                    <p><i class="fa fa-clock-o"></i> 1 days ago</p> 
+                  </div>  
+                </div>
+              </div>
+              <a href="#" class="room-price">Ksh <%=property.price %> </a>
+            </div>
+           
+          </div>
+          
+
+        </div>
+           <% }) %>      
+        
+      
+      </div>
+    </div>
+  </section>
+  <!-- feature section end -->
+
+
+
+  <!-- feature category section -->
+  <section class="feature-category-section spad">
+    <div class="container">
+      <div class="section-title text-center">
+        <h3>LOOKING PROPERTY</h3>
+        <p>What kind of property are you looking for? We will help you</p>
+      </div>
+      <div class="row">
+        <div class="col-lg-3 col-md-6 f-cata">
+          </images src="/images/feature-cate/1.jpg" alt="#">
+          <h5>Apartment for rent</h5>
+        </div>
+        <div class="col-lg-3 col-md-6 f-cata">
+          </images src="/images/feature-cate/.jpg" alt="#">
+          <h5>Family Home</h5>
+        </div>
+        <div class="col-lg-3 col-md-6 f-cata">
+          </images src="/images/feature-cate/.jpg" alt="#">
+          <h5>Movie Shop</h5>
+        </div>
+        <div class="col-lg-3 col-md-6 f-cata">
+          </images src="/images/feature-cate/4.jpg" alt="#">
+          <h5>Office Building</h5>
+        </div>
+      </div>
+    </div></section>
+  </section>
+ 
+
+
+<%- include('../partials/footer'); %>
