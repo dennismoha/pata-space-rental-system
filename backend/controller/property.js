@@ -8,7 +8,74 @@ const mv = require('mv');
 const path = require('path')
 
 const new_property =(req,res) => {
-		
+	const upload = multer({storage}).single('photo')
+	upload(req,res, (err)=> {
+		if(err) {
+			throw err			
+		}
+		console.log('file uploaded to the server')
+		console.log(req.file)
+
+		//sending files to cloudinary
+		const cloudinary = require('cloudinary').v2
+		cloudinary.config({
+		cloud_name: '#',
+		api_key: '#',
+		api_secret: '#'
+
+		})
+
+		const path = req.file.path
+		console.log(path);
+		const uniquefilename = new Date().toISOString()
+
+		cloudinary.uploader.upload(
+			path,
+			{public_id: `blog/${uniquefilename}`, tags: `blog`},
+			(err,photo)=> {
+				if(err){
+					res.send(err)
+					console.log('error uploading to cloudinary')					
+
+				}
+						console.log(photo)
+						const property = new  Property({
+							title : req.body.title,
+							description : req.body.description,
+							price : req.body.price,
+							// category : req.body.category,
+							quantity : req.body.quantity,
+							sold : req.body.sold,
+							photo:photo.secure_url,
+							Owner: {
+								id:req.params.id,
+								owner: req.user.firstname + " " + req.user.lastname
+							}
+						});	
+
+						console.log(req)
+
+						console.log(property.owner);
+
+						property.save().then(
+							(property)=> {
+								if(property){
+
+									console.log('this is the property',property)
+									res.render('landlord/property_show',{property:property})
+								}
+								
+							}).catch((error)=> {
+								throw error;
+								console.log('error in adding new property');
+							})
+
+							
+				
+			}
+			)
+	})
+	
 
 }
 

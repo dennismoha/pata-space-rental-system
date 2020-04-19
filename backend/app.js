@@ -22,6 +22,7 @@ const admin = require('./routes/admin');
 const property = require('./routes/property');
 const category = require('./routes/category');
 const reviews = require('./routes/reviews');
+const landlord = require('./routes/landlord')
 
 app.set('view engine','ejs');
 
@@ -91,6 +92,7 @@ app.use('/admin',admin);
 app.use('/property',property);
 app.use('/category',category);
 app.use('/review',reviews)
+app.use('/landlord',landlord)
 
 
 
