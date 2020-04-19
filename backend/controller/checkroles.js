@@ -15,9 +15,6 @@ exports.grantAccess =(req,res,next) => {
 	}
 }
 
-
-
-
 exports.allowIfLoggedin = (req, res, next) => {
 		if(req.isAuthenticated()) {
 				return next();

@@ -1,64 +1,168 @@
 <%- include('../partials/header'); %>
 
-<link rel="stylesheet" type="text/css" href="/stylesheet/maps.css">
-	<div id="map"></div>
-	<!-- Replace the value of the key parameter with your own API key. -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkUOdZ5y7hMm0yrcCQoCvLwzdM6M8s5qk&callback=initMap" async defer></script>
-<script type="text/javascript" src="/js/maps.js"></script>
- <p> maps section
+<!-- Page top section -->
+	<section class="page-top-section set-bg" data-setbg="/images/page-top-bg.jpg">
+		<div class="container text-white">
+			<h2><%= property.title %></h2>
+		</div>
+	</section>
+	<!--  Page top end -->
+
+	<!-- Breadcrumb -->
+	<div class="site-breadcrumb">
+		<div class="container">
+			<a href=""><i class="fa fa-home"></i>Home</a>
+			<span><i class="fa fa-angle-right"></i><%= property.title %></span>
+		</div>
+	</div>
+
+	<!-- Page -->
+	<section class="page-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 single-list-page">
+					<div class="single-list-slider owl-carousel" id="sl-slider">
+						<div class="sl-item set-bg" data-setbg="<%= property.photo%>">
+							<div class="sale-notic">FOR SALE</div>
+						</div>
+						
+					</div>
+					<div class="owl-carousel sl-thumb-slider" id="sl-slider-thumb">
+						<div class="sl-thumb set-bg" data-setbg="/images/single-list-slider/1.jpg"></div>
+						<!-- <div class="sl-thumb set-bg" data-setbg="/images/single-list-slider/2.jpg"></div>
+						<div class="sl-thumb set-bg" data-setbg="/images/single-list-slider/3.jpg"></div>
+						<div class="sl-thumb set-bg" data-setbg="/images/single-list-slider/4.jpg"></div>
+						<div class="sl-thumb set-bg" data-setbg="/images/single-list-slider/5.jpg"></div> -->
+					</div>
+
+					<div class="single-list-content">
+						<div class="row">
+							<div class="col-xl-8 sl-title">
+								<h2><a href="#"> location details</a></h2>
+								<p><i class="fa fa-map-marker"></i><a href="#"> co-ordinates</a></p>
+							</div>
+							<div class="col-xl-4">
+								<a href="#" class="price-btn">ksh <%= property.price %></a>
+							</div>
+						</div>
+						<h3 class="sl-sp-title">Property Details</h3>
+						<div class="row property-details-list">
+							<div class="col-md-4 col-sm-6">
+								<p><i class="fa fa-th-large"></i> </p>
+								<p><i class="fa fa-bed"></i> 16 Bedrooms</p>
+								<p><i class="fa fa-user"></i> <a href="#"> Agent name</a></p>
+							</div>
+							<div class="col-md-4 col-sm-6">
+								<p><i class="fa fa-car"></i>parking ?</p>
+								<p><i class="fa fa-building-o"></i> </p>
+								<p><i class="fa fa-clock-o"></i> posted 1 days ago</p>
+							</div>
+							
+						</div>
+						<h3 class="sl-sp-title">Description</h3>
+						<div class="description">
+							<%= property.description %>
+						<h3 class="sl-sp-title">Additional Property Details</h3>
+						<div class="row property-details-list">
+							<div class="col-md-4 col-sm-6">
+								<p><i class="fa fa-check-circle-o"></i> Air conditioning</p>
+								<p><i class="fa fa-check-circle-o"></i> Telephone</p>
+								<p><i class="fa fa-check-circle-o"></i> Laundry Room</p>
+							</div>
+							<div class="col-md-4 col-sm-6">
+								<p><i class="fa fa-check-circle-o"></i> Matatu stage</p>
+								<p><i class="fa fa-check-circle-o"></i> nearest ameniites</p>
+								
+							</div>
+							<div class="col-md-4">
+								<p><i class="fa fa-check-circle-o"></i> City views</p>
+								<p><i class="fa fa-check-circle-o"></i> Internet</p>
+								<p><i class="fa fa-check-circle-o"></i> Electric Range</p>
+							</div>
+							<% if(currentUser.role == 'user') {%>
+								<a class="btn btn-primary" href="">contact Agent </a>
+							<%}%>
+
+								<% if(currentUser.role == 'landlord' || currentUser.role == 'admin') {%>
+									<a href ="" class="btn btn-danger" > delete image </a>
+									<a href ="" class="btn btn-primary"> edit image </a>
+								<%} %>
+						</div>
+						
+
+						<!-- <h3 class="sl-sp-title bd-no">Video</h3>
+						<div class="perview-video">
+							<img src="/images/video.jpg" alt="">
+							<a href="https://www.youtube.com/watch?v=v13nSVp6m5I" class="video-link"><img src="/images/video-btn.png" alt=""></a>
+						</div> -->
+						<h3 class="sl-sp-title bd-no">Location</h3>
+						<div class="pos-map" id="map-canvas" style="border: 3px solid blue">
+						</div>
+
+
+						<% if(currentUser.role == 'user') {%>
+								<h4> comment section </h4>
+							
+							<h4 class="comment-title">Leave Your Comment</h4>
+							<form class="comment-form" action="/review/review/<%=property.id%>/new" method="post">
+								<div class="row">									
+									
+									<div class="col-lg-9">
+										<textarea placeholder="Your Message" name="content"></textarea> 
+										<button  type="submit" class="btn btn-primary ">SEND COMMENT</button>
+									</div>
+								</div>
+							</form>
+						</div>
+						<%} %>
+
+						<% if(property.reviews == "") {%>
+							
+									<p> there are no comments found </p>
+							</div>
+						   <%} else {%>
+						   		<div>
+						   			<h4> this is the comment section</h4>
+							
+										 <div class="comment-warp" style="border: 3px solid blue">
+								
+								<ul class="comment-list" style="overflow-y: scroll;" >
+									<li>
+										<div class="comment">
+											<div class="comment-avator set-bg" data-setbg="imges/blog/comment/1.jpg"></div>
+											<%property.reviews.forEach(function(content)  { %>
+											<div>
+												<h5> <small> author name</small> <%= content.content %></h5>
+												
+												
+												
+											</div>
+											<% }) %>
+										</div>
+									</li>
+								</ul>
+							
+						</div>
+
+						<%} %>
+
+
+						
+					
+				</div>
+				
+				
+				
+			</div>
+		</div>
+	</section>
+	<!-- Page end -->
+
 
 	
-	<div class="container " style="margin:60px">
-	<img src="<%= property.photo %>" alt="_image not found" style="height: 50%;width: 50%"> <br />
-		<%= property.category %>  <br />
-		<%= property.title %> <br />
-		<%= property.description %> <br />
-	</div>
-
-	<% if(currentUser.role == 'landlord' || currentUser.role == 'admin') {%>
-		<a href ="" class="btn btn-danger" > delete image </a>
-		<a href ="" class="btn btn-primary"> edit image </a>
-	<%} %>
-
-	<% if(property.reviews == "") {%>
-	<div class="container" style="border: 2px solid blue; height: 100px;margin: 10px" >
-			<p> there are no comments found </p>
-	</div>
-   <%} else {%>
-   		<div class="container" style="border: 2px solid blue; height: 100px;margin: 10px" >
-   				<h4> this is the comment section</h4>
-	<%property.reviews.forEach(function(content)  { %>
-		 <p> this is the content	<%= content.content %> </p>
-		 <p> this is the author	<%= content.author %> </p>
-	<% }) %>
-</div>
-
-<%} %>
+	<!-- Clients section end -->
 
 
-<div>
-	<% if(currentUser.role == 'user') {%>
-		<div class="container" style="margin:top 50px">
-			<h4> comment section </h4>
-			<form action="/review/review/<%=property.id%>/new" method="post">
-				<label for="review">reviews</label>
-					<input type="text" id="review" class="form-control" aria-describedby="reviewHelpBlock" name="content">
-				<small id="passwordHelpBlock" class="form-text text-muted">
-					 enter your comment
-				</small>
-				<button type="submit" class="btn btn-primary"> submit</button>
-			</form>
-
-		</div>
-	<%} %>
-</div>
-
-
-<p class="lead"> created by <i> <%= property.Owner.owner %> </i></p>
-
-<div style="height: 150px;width: 100%;overflow: scroll;">
-	<%=property %>
-</div>
 
 
 

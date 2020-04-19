@@ -1,86 +1,14 @@
 const Property = require('../model/property');
 const category = require('../model/category')
 const multer = require('multer');
-
-const storage = multer.diskStorage({
-	destination: function(req,file,cb) {
-		cb(null,'public/images')
-	},
-	filename: function(req,file,cb) {
-		cb(null,Date.now() + '_' + file.originalname);
-	}
-});
-
+const fileUpload = require('express-fileupload')
+const fs = require('fs-extra');
+const mkdrp = require('mkdirp');
+const mv = require('mv');
+const path = require('path')
 
 const new_property =(req,res) => {
-	const upload = multer({storage}).single('photo')
-	upload(req,res, (err)=> {
-		if(err) {
-			throw err			
-		}
-		console.log('file uploaded to the server')
-		console.log(req.file)
-
-		//sending files to cloudinary
-		const cloudinary = require('cloudinary').v2
-		cloudinary.config({
-		cloud_name: 'moha254',
-		api_key: '934657442839282',
-		api_secret: 'hA-U4qbIYxTLwqJ34_OUmic6fgM'
-
-		})
-
-		const path = req.file.path
-		console.log(path);
-		const uniquefilename = new Date().toISOString()
-
-		cloudinary.uploader.upload(
-			path,
-			{public_id: `blog/${uniquefilename}`, tags: `blog`},
-			(err,photo)=> {
-				if(err){
-					res.send(err)
-					console.log('error uploading to cloudinary')					
-
-				}
-						console.log(photo)
-						const property = new  Property({
-							title : req.body.title,
-							description : req.body.description,
-							price : req.body.price,
-							// category : req.body.category,
-							quantity : req.body.quantity,
-							sold : req.body.sold,
-							photo:photo.secure_url,
-							Owner: {
-								id:req.params.id,
-								owner: req.user.firstname + " " + req.user.lastname
-							}
-						});	
-
-						console.log(req)
-
-						console.log(property.owner);
-
-						property.save().then(
-							(property)=> {
-								if(property){
-
-									console.log('this is the property',property)
-									res.render('landlord/property_show',{property:property})
-								}
-								
-							}).catch((error)=> {
-								throw error;
-								console.log('error in adding new property');
-							})
-
-							
-				
-			}
-			)
-	})
-	
+		
 
 }
 
@@ -99,19 +27,7 @@ const properties = (req,res) => {
 		})
 }
 
-//getting a single property  -- show page
-
-// const oneProperty = (req,res) => {
-// 	Property.findById(req.params.id,(err,property)=> {
-// 		if(err) {
-// 			console.log('error finding property');
-// 			throw err
-// 		}
-// 		res.render('properties/show',{property:property})
-// 	})
-// }
-
-
+//one property
 const oneProperty = (req,res) => {
 	Property.findById(req.params.id).populate('reviews').exec((err,property)=> {
 		if(err) {

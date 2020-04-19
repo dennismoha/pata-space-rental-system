@@ -1,6 +1,8 @@
 const Property = require('../model/property');
 const Review = require('../model/reviews');
 
+
+//creating comments
 const newReview =(req,res) => {
 	Property.findById(req.params.id,function(err,property) {
 		

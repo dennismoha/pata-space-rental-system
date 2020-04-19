@@ -1,22 +1,65 @@
 const Category = require('../model/category');
 
-const createCategory = (req,res) => {
 
-	const category = new Category({
-		name : req.body.name
-	});
 
-	category.save().then(
-		(category)=> {
-			if(category){
-				res.render('Admin/view_categories',{category:category})
-			}
-			res.status(400).json({message: "error adding categories"})
-		}).catch((error)=> {
-			throw error;
-			console.log('error in adding categories')
-		})
+
+
+const createCategory = (req,res)=> {
+	req.checkBody('name','name cannot be empty').notEmpty()
+
+	var title = req.body.name;
+	var sep = title.replace('/\s+/g','-').toLowerCase();
+
+	var errors = req.validationErrors();
+				if(errors) {
+					var messages = [];
+					errors.forEach(function(error) {
+							messages.push(error.msg)
+						})	
+						req.flash('error',messages)
+						console.log(messages)
+					res.render('Admin/create_category',{messages: req.flash('error')})			
+				}
+
+	Category.findOne({sep:sep},(err,category)=> {
+					if(category) {
+						req.flash('error','category exists');
+						res.render('Admin/create_category',{messages:req.flash('error'),name:req.body.name})
+					}else {
+
+						const category = new Category({
+								name:req.body.name,					
+								sep: sep
+					
+						});
+
+							console.log('this is the category',category)
+
+				category.save().then((category)=> {
+					if(category) {
+
+							Category.find().then((category)=> {
+							  if(category) {
+							    req.app.locals.category = category
+							  }
+							}).catch((error)=> {
+							  throw error
+							})
+
+						req.flash('info','category successfully created')
+						// res.render('admin/pages',{page:page,message:req.flash('info')})
+						res.render('Admin/view_categories',{category:category})
+							}
+					}).catch((error)=> {
+						throw error
+							})
+
+					}
+				})
 }
+
+
+
 
 const getCategories = (req,res) => {
 	Category.find().then(

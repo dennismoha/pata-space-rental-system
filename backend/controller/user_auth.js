@@ -105,11 +105,9 @@ const singup = (req,res) => {
 	}
 
 
+	//getting one user 
+const getUser =(req,res) => {	
 	
-const getUser =(req,res) => {
-	console.log(req.role);
-	//const permission = ac.can(req.user.role).readAny('profile');
-	//if(permission.granted) {
 		User.findById(req.params.id,(err,userFound)=> {
 	 		if(err) {
 	 			//use and error handler here
@@ -122,38 +120,13 @@ const getUser =(req,res) => {
 	 			res.render('Admin/users',{user:userFound })	 			
 	 		}
 	 		
-	 	})
-
-
-	// }else {
-	// 	console.log('permission denied')
-	// 	res.status(403).end();
-	// }
+	 	});
+	
 	 }
 
-
-	 //get a single user
-
-
 //updating a single user
-// const updateUser = (req,res) => {
-// 	//const permission = ac.can(req.user.ro)
-	
-// 	User.findByIdAndUpdate(req.params.id,(err,user)=> {
-// 		if(err) {
-// 			//
-// 			console.log("can't uodate this user")
-// 			throw error
-// 		}
-// 		console.log(user)
 
-// 		// res.render('allusers page',{user})
-// 	})
-// };
-
-const updateUser = (req,res) => {
-	
-	// console.log(req.body)
+const updateUser = (req,res) => {	
 	const user =  new User({
 		_id : req.params.id,
 		firstname:req.body.firstname,
@@ -190,19 +163,7 @@ const deleteUser = (req, res) => {
 }
 
 
-// const deleteUser =(req,res) => {
-// 	// console.log('this is the delete user route',req)
-// 	// User.deleteOne({id:req.params.id}).then(
-// 	// 	()=> {
-// 	// 		res.status(200).json({
-// 	// 			message: "deleted successfully"
-// 	// 		})
-// 	// 	}).catch((error)=> {
-// 	// 		throw err
-// 	// 		console.log('error in deleting user');
-// 	// 	})
 
-// }
 //editing user route
 
 

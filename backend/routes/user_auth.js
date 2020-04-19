@@ -23,9 +23,7 @@ userRoute.post('/user/login',(req,res,next)=> {
 
 userRoute.get('/users',  Usersign.allUsers);
 userRoute.get('/users/getUser/:id',Usersign.getUser) //getting a single user
-// userRoute.put('/users/updateUser/:id',function(req,res) {
-// 	res.send('reached edit point')
-// })
+
 
 userRoute.delete('/users/removeUser/:id',Usersign.deleteUser) //removing a single user
  userRoute.put('/users/updateUser/:id',Usersign.updateUser)

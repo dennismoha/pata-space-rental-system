@@ -1,3 +1,6 @@
+
+//defines each role for each router. i.e either admin,user,landlord
+
 const AccessControl = require('accesscontrol');
 const ac = new AccessControl();
 

@@ -1,6 +1,15 @@
 <%- include('../partials/admin/header'); %>
 <%- include('../partials/admin/navbar'); %>
 <%- include('../partials/admin/sidenav'); %>
+
+<% messages.forEach(function(message){ %>
+<div class="alert alert-warning">
+  <strong>  <%= messages %></strong> 
+</div>
+<% }) %>
+
+
+
   <form action="/category/category/new_category" method="post"> 
     <div class="form-group">
       <label for="category">Create category</label>
@@ -16,6 +25,7 @@
   </div>
 </div>
 
+
         <script src="/js/dashboard.js"></script></body>
-        <%- include('../partials/footer'); %>
+        <%- include('../partials/footers'); %>
 

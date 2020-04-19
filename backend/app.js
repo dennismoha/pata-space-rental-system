@@ -2,13 +2,16 @@ require('dotenv').config()
 const express = require('express');
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser');
-const path = require('path')
+// const path = require('path');
 const session = require('express-session');
 const flash = require('connect-flash')
 const passport = require('passport');
 const methodOverride = require('method-override');
+const validator = require('express-validator');
+const fileUpload = require('express-fileupload');
 const ejs = require('ejs');
 const app 	= express();
+
 
  app.use(express.static(__dirname + "/public"));
  app.use(express.static(__dirname + '/public/js'));
@@ -33,7 +36,7 @@ app.use(session({
 	resave: true,
 	saveUninitialized: true,
 	
-}))
+}));
 
 app.use(methodOverride('_method'));
 
@@ -44,6 +47,26 @@ app.use(express.urlencoded({extended:true}));
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+app.use(fileUpload({
+  createParentPath: true
+}));
+
+//custom express validator
+app.use(validator({
+  customValidators: {
+    isImage: function(value,filename) {
+      var extension = (path.extname(filename)).toLowerCase();
+      switch(extension) {
+        case '.jpg':return '.jpg';
+        case '.jpeg':return '.jpeg';
+        case '.png':return '.png';
+        case '':return '.jpg';
+        default: return false;
+      }
+    }
+  }
+}))
 //connect flash
 app.use(flash())
 
@@ -54,6 +77,7 @@ app.use((req,res,next)=> {
 	res.locals.sucess = req.flash('sucess');
 	res.locals.error =  req.flash('error');
 	res.locals.error_login =  req.flash('error_login');
+	res.locals.messages =  req.flash('messages');
 	next();
 });
 
