@@ -1,5 +1,6 @@
 const User = require('../model/users_singup');
 const About = require('../model/about')
+const Category = require('../model/category')
 
 
 //this is the landing page
@@ -59,12 +60,20 @@ const about_page = (req,res) => {
 	res.render('Admin/about')
 }
 
-const landlord_dashboard = (req,res) => {
+const landlord_dashboard = (req,res) => {	
 	res.render('landlord/landlord_dashboard');
 }
 
 const landlord_create_property = (req,res) => {
-	res.render('landlord/property_create');
+	var title,description,price,quantity,sold = "";
+	Category.find().then((category)=> {
+		if(category) {
+			res.render('landlord/property_create',{category:category,title,description,price,quantity,sold});
+		}
+	}).catch((error)=> {
+		throw error
+	})
+	
 }
 
 // const landlord_view_property = (req,res)=> {

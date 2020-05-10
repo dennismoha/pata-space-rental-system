@@ -3,81 +3,157 @@ const category = require('../model/category')
 const multer = require('multer');
 const fileUpload = require('express-fileupload')
 const fs = require('fs-extra');
-const mkdrp = require('mkdirp');
+const mkdirp = require('mkdirp');
 const mv = require('mv');
 const path = require('path')
+const { check, validationResult } = require('express-validator');
 
-const new_property =(req,res) => {
-	const upload = multer({storage}).single('photo')
-	upload(req,res, (err)=> {
-		if(err) {
-			throw err			
-		}
-		console.log('file uploaded to the server')
-		console.log(req.file)
+const new_property = (req,res)=> {
+	console.log('the req.body is',req.body)
+	var imageFile ;
+	if(!req.files) {
+		imageFile = ""
+	}else {
+		imageFil = req.files.photo.name
+		imageFile = req.files.photo
+	}
 
-		//sending files to cloudinary
-		const cloudinary = require('cloudinary').v2
-		cloudinary.config({
-		cloud_name: '#',
-		api_key: '#',
-		api_secret: '#'
 
+	var title = req.body.title
+	var description = req.body.description
+	var price = req.body.price
+	var quantity = req.body.quantity
+	var sold = req.body.sold
+
+	req.checkBody('title','title cannot be empty').notEmpty();	
+	req.checkBody('description','description cannot be empty').notEmpty()
+	req.checkBody('price','price cannot be empty').notEmpty()
+	req.checkBody('quantity','quantity cannot be empty').notEmpty()
+	req.checkBody('sold','sold cannot be empty').notEmpty()
+
+	var errors = req.validationErrors();
+
+	if(errors) {
+		var message =[];
+		errors.forEach(function(error){
+			message.push(error)
 		})
 
-		const path = req.file.path
-		console.log(path);
-		const uniquefilename = new Date().toISOString()
+		category.find().then((category)=> {
+				req.flash('error',error)
+			res.render('landlord/property_create',{messages:req.flash('error'), category:category,title,description,price,quantity,sold});
+		})
+	}
 
-		cloudinary.uploader.upload(
-			path,
-			{public_id: `blog/${uniquefilename}`, tags: `blog`},
-			(err,photo)=> {
+	var property = new Property({
+		title:title,
+		description:description,
+		price:price,
+		category:req.body.category,
+		quantity:quantity,
+		sold:sold,
+		photo:imageFil
+	})
+
+	property.save().then((property)=> {
+		if(property) {
+			//mkdirp('public/images/' + property.id + "/"  ).then(made=> console.log(`images folder created${made}`));
+
+			mkdirp('public/images/' + property.id).then(made =>
+  					console.log(`made directories, starting with ${made}`))
+
+			mkdirp('public/images/' + property.id + '/gallery').then(made =>
+  							console.log(`made directories, starting with ${made}`))
+
+
+			var propertyImage = req.files.photo;
+			console.log('the propertyImage is ',propertyImage)
+			var path = 'public/images/' + property.id + '/gallery/' + imageFil
+			propertyImage.mv(path,(err)=> {
 				if(err){
-					res.send(err)
-					console.log('error uploading to cloudinary')					
-
+					console.log('the property image error is ', err)
+				throw err
 				}
-						console.log(photo)
-						const property = new  Property({
-							title : req.body.title,
-							description : req.body.description,
-							price : req.body.price,
-							// category : req.body.category,
-							quantity : req.body.quantity,
-							sold : req.body.sold,
-							photo:photo.secure_url,
-							Owner: {
-								id:req.params.id,
-								owner: req.user.firstname + " " + req.user.lastname
-							}
-						});	
+				
+			})
+		}
+		res.send(property)
+	}).catch((error)=> {
+		throw error
+	})
+}
 
-						console.log(req)
+// const new_property =(req,res) => {
+// 	const upload = multer({storage}).single('photo')
+// 	upload(req,res, (err)=> {
+// 		if(err) {
+// 			throw err			
+// 		}
+// 		console.log('file uploaded to the server')
+// 		console.log(req.file)
 
-						console.log(property.owner);
+// 		//sending files to cloudinary
+// 		const cloudinary = require('cloudinary').v2
+// 		cloudinary.config({
+// 		cloud_name: '#',
+// 		api_key: '#',
+// 		api_secret: '#'
 
-						property.save().then(
-							(property)=> {
-								if(property){
+// 		})
 
-									console.log('this is the property',property)
-									res.render('landlord/property_show',{property:property})
-								}
+// 		const path = req.file.path
+// 		console.log(path);
+// 		const uniquefilename = new Date().toISOString()
+
+// 		cloudinary.uploader.upload(
+// 			path,
+// 			{public_id: `blog/${uniquefilename}`, tags: `blog`},
+// 			(err,photo)=> {
+// 				if(err){
+// 					res.send(err)
+// 					console.log('error uploading to cloudinary')					
+
+// 				}
+// 						console.log(photo)
+// 						const property = new  Property({
+// 							title : req.body.title,
+// 							description : req.body.description,
+// 							price : req.body.price,
+// 							// category : req.body.category,
+// 							quantity : req.body.quantity,
+// 							sold : req.body.sold,
+// 							photo:photo.secure_url,
+// 							Owner: {
+// 								id:req.params.id,
+// 								owner: req.user.firstname + " " + req.user.lastname
+// 							}
+// 						});	
+
+// 						console.log(req)
+
+// 						console.log(property.owner);
+
+// 						property.save().then(
+// 							(property)=> {
+// 								if(property){
+
+// 									console.log('this is the property',property)
+// 									res.render('landlord/property_show',{property:property})
+// 								}
 								
-							}).catch((error)=> {
-								throw error;
-								console.log('error in adding new property');
-							})
+// 							}).catch((error)=> {
+// 								throw error;
+// 								console.log('error in adding new property');
+// 							})
 
 							
 				
-			}
-			)
-	})
+// 			}
+// 			)
+// 	})
 	
 
-}
+// }
 
 //getting all properties
 const properties = (req,res) => {

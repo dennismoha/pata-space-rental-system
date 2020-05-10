@@ -35,6 +35,7 @@ const singup = (req,res) => {
 	if(!firstname || !lastname || !email || !phone_number || !password || !password2) {
 		errors.push({message: "please fill in all the requirements"})
 	}
+
 	
 	if(password !== password2) {
 		errors.push({message: "password do not match"})
@@ -64,6 +65,7 @@ const singup = (req,res) => {
 						lastname,						
 						email,
 						phone_number,
+						role:req.body.role,
 						password:hash
 					});
 					
