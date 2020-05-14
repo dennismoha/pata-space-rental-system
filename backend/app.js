@@ -44,10 +44,6 @@ app.use(methodOverride('_method'));
 //body-parser middleware but in express
 app.use(express.urlencoded({extended:true}));
 
-//initializing passport
-app.use(passport.initialize());
-app.use(passport.session());
-
 
 app.use(fileUpload({
   createParentPath: true
@@ -71,6 +67,10 @@ app.use(validator({
 //connect flash
 app.use(flash())
 
+//initializing passport
+app.use(passport.initialize());
+app.use(passport.session());
+
 //global variables
 app.use((req,res,next)=> {
 	res.locals.currentUser = req.user;
@@ -79,6 +79,7 @@ app.use((req,res,next)=> {
 	res.locals.error =  req.flash('error');
 	res.locals.error_login =  req.flash('error_login');
 	res.locals.messages =  req.flash('messages');
+	res.locals.message =  req.flash('message');
 	next();
 });
 

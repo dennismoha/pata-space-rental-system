@@ -3,7 +3,8 @@ const passport = require('passport');
 const userRoute = express.Router();
 const Usersign = require('../controller/user_auth');
 const checkRole = require('../controller/checkroles');
-const jwt = require('jsonwebtoken')
+const flash = require('connect-flash')
+
 
 
 
@@ -17,7 +18,7 @@ userRoute.post('/user/login',(req,res,next)=> {
 		failureRedirect: '/page/users/login',
 		failureFlash : true,
 		successFlash : "welcome to the site"
-	})(req,res,next);	
+	})(req,res,next);
 });
 
 
@@ -26,12 +27,10 @@ userRoute.get('/users/getUser/:id',Usersign.getUser) //getting a single user
 
 
 userRoute.delete('/users/removeUser/:id',Usersign.deleteUser) //removing a single user
- userRoute.put('/users/updateUser/:id',Usersign.updateUser)
+ userRoute.put('/users/updateUser/:id',Usersign.updateUser) //updating a single user
 
 userRoute.get('/users/logout',Usersign.logout);
-userRoute.get('*',(req,res) => {
-	res.send(req.body)
-})
+
 
 module.exports = userRoute;
 
