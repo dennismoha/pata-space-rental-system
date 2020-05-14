@@ -3,7 +3,9 @@ const Property = require('../model/property');
 
 //shows each landlord's own property
 const landlord_property = (req,res)=> {
-	Property.find({Owner:req.user}).then((property)=> {
+	const owners = req.user.firstname + " " + req.user.lastname
+	console.log('this is the properties page, the req.user is ', owners)
+	Property.find({Owner:{owner:owners}}).then((property)=> {
 		if(property) {
 			console.log(property)
 			res.render('landlord/all_properties',{property:property})
@@ -17,3 +19,7 @@ const landlord_property = (req,res)=> {
 
 
 module.exports = {landlord_property}
+
+
+
+//Property.find({Owner:{owner:owners}}).then((property)=> {

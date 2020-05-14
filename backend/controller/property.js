@@ -52,6 +52,10 @@ const new_property = (req,res)=> {
 		category:req.body.category,
 		quantity:quantity,
 		sold:sold,
+		Owner: {
+								id:req.params.id,
+								owner: req.user.firstname + " " + req.user.lastname
+							},
 		photo:imageFil
 	})
 
@@ -77,7 +81,7 @@ const new_property = (req,res)=> {
 				
 			})
 		}
-		res.send(property)
+		res.redirect('/landlord/landlord/owner/properties');
 	}).catch((error)=> {
 		throw error
 	})
