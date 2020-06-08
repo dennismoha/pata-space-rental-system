@@ -11,12 +11,15 @@
 		  <div class="card">
 		  	     <h5 class="card-title"><%= property.title %></h5>
 		  	     <div style="position: relative;left:150px">
-		    		<img src="/images/<%=property.id%>/gallery/<%=property.photo %>" class="card-img-top" style="height: 50%;width: 50%" alt="no pic">
+		  	     	<a href="/landlord/landlord/show/<%=property.id%>">
+		    			<img src="/images/<%=property.id%>/gallery/<%=property.photo %>" class="card-img-top" style="height: 50%;width: 50%" alt="no pic">
+		    		</a>
 				 </div>
 		    <div class="card-body">
 		 
 		      <p class="card-text"><%= property.description %></p>
 		      <p class="card-text"><small class="text-muted"><%= property.price %></small></p>
+		      <p class="card-text"><small class="text-muted"><%= property.posted %></small></p>
 		    </div>
   </div>
 </div>

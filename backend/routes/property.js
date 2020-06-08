@@ -2,7 +2,7 @@ const express = require('express');
 const Properties = require('../controller/property');
 const roles = require('../controller/checkroles');
 
-const grid = require('gridfs-stream');
+
 const propRoute = express.Router();
 
 

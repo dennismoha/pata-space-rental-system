@@ -50,7 +50,7 @@
 							<div class="col-md-4 col-sm-6">
 								<p><i class="fa fa-th-large"></i> </p>
 								<p><i class="fa fa-bed"></i> 16 Bedrooms</p>
-								<p><i class="fa fa-user"></i> <a href="#"> Agent name</a></p>
+								<p><i class="fa fa-user"></i> <a href="#" id='prop'> <%= property.Owner.owner %></a></p>
 							</div>
 							<div class="col-md-4 col-sm-6">
 								<p><i class="fa fa-car"></i>parking ?</p>
@@ -186,24 +186,15 @@
 				<div>
 		  	<h4> other properties sold by these people</h4>
 							
-						<div class="comment-warp" style="border: 3px solid blue">
-								
-								<ul class="comment-list" style="overflow-y: scroll;" >
-									<li>
-										<div class="comment">
-											<div class="comment-avator set-bg" data-setbg="imges/blog/comment/1.jpg"></div>
+						<div class="container" >
+							<div class="row">
+								<div class="col-md-4 col-xl-4 col-lg-4 col-xs-4" id="cro">
+									<div id="test">
 										
-											<div>
-												<h5> <small> author name</small></h5>
-												
-												
-												
-											</div>
-											
-										</div>
-									</li>
-								</ul>
-							
+									</div>
+									
+								</div>								
+							</div>							
 						</div>					
 					
 			</div>
@@ -216,7 +207,35 @@
 	<!-- Clients section end -->
 
 
-
-
-
 <%- include('../partials/footer'); %>
+
+
+
+<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript">
+
+
+	$(document).ready(function(){
+		const prop = document.getElementById('prop').textContent;	
+		$.ajax({
+			url: '/landlord/test/'+prop,
+			method: 'GET',
+			success :function(data){				
+				data.forEach(function(data){
+					const test = document.getElementById('test');
+					const feed = document.createELement('p');
+					p.textContent = data.title;
+					test.appendChild(feed)
+					
+				})
+				var test = document.getElementById('test');
+				test.textContent = data.message
+				console.log('the data is ',data)
+			}
+		})
+	})
+	
+</script>

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const User = require('../model/users_singup');
 const localStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken')
+
 
 module.exports = (passport)=> {
 	passport.use(
@@ -10,7 +10,7 @@ module.exports = (passport)=> {
 				User.findOne({email:email})
 				.then((user)=>{
 					if(!user) {
-						return done(null,false,{message:"that email is not registered"});
+						return done(null,false,{message:"Invalid user details"});
 					}
 
 					//match password
@@ -21,7 +21,7 @@ module.exports = (passport)=> {
 							return done(null, user);
 						}else {
 							
-							return done(null, false, {message:"password incorrect"})
+							return done(null, false, {message:"Invalid user details"})
 							
 						}
 					})

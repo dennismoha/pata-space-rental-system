@@ -1,3 +1,95 @@
-this is where the agent will edit his property
+	<%- include('../partials/landlord/header'); %>
+	<%- include('../partials/landlord/navbar'); %>
+	<%- include('../partials/landlord/sidenave'); %>
 
-besides he cad decide to delete it
+	<% messages %>	
+
+				 
+	<form action = "/property/property/new_property" method="post" enctype="multipart/form-data">
+		  <div class="form-group">
+		    <label for="name">name</label>
+		    <input type="text" class="form-control" id="prop_name" aria-describedby="emailHelp" placeholder="name" name = "title" value="<%=title %>">
+		    <small id="titleHelp" class="form-text text-muted">enter your property name here</small>
+		  </div>
+
+		  <div class="form-group">
+			    <label for="description">Property Description</label>
+			    <textarea class="form-control" id="description" rows="3" name="description"><%= description %></textarea>
+		  </div>
+
+		  <div class="form-group">
+		    <label for="price">price</label>
+		    <input type="Number" class="form-control" id="price" aria-describedby="priceHelp" placeholder="enter item price" name = "price" value="<%=price %>">
+		    <small id="priceHelp" class="form-text text-muted">property price</small>
+		  </div>
+
+
+		   <div class="form-group col-md-4">
+		      <label for="category">Category</label>		      
+			      <select  class="form-control" name="category">
+			      	 <%categories.forEach(function(cat){%>
+			        <option value="<%=cat.name%>"  <%if(cat.name == category ){%>
+			        			selected= "selected"
+			        	<%}%>><%=cat.name%></option>			       
+			         	<%})%>
+			      </select>		     
+    	   </div>
+
+		  <div class="form-group">
+		    <label for="quantity">quantity</label>
+		    <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="categoryHelp" placeholder="quantity" name="quantity" value="<%=quantity %>">
+		    <small id="quantityHelp" class="form-text text-muted">enter quantity</small>
+		  </div>
+
+		   <div class="form-group">
+		    <label for="photo">sold</label>
+		    <input type="name" class="form-control" id="sold" aria-describedby="categoryHelp" placeholder="sold" name="sold" value="<%=sold%>">
+		    <small id="soldHelp" class="form-text text-muted">sold ?</small>
+		  </div>
+
+		  <div class="form-group">
+		    <label for="photo">photo</label>
+		    <input type="file"  class="form-control" id="photo" aria-describedby="photoHelp"  name="photo">
+		    <small id="quantityHelp" class="form-text text-muted">upload image</small>
+		  </div>
+		  
+		 
+		  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<div class="container">
+	<div class="row" style="width: 100%;padding: 30px;">
+		<h3 style="text-align: center;"> upload more images </h3>
+	</div>
+	
+</div>
+
+
+<form action = "/property/property/new_property" method="post" enctype="multipart/form-data">		   
+
+		  <div class="form-group">
+		    <label for="photo">photo</label>
+		    <input type="file"  class="form-control" id="photo" aria-describedby="photoHelp"  name="photo">
+		    <small id="quantityHelp" class="form-text text-muted">upload image</small>
+		  </div>
+		  
+		 
+		  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+
+
+
+
+ <%- include('../partials/footers'); %>
+
+      
+      
+    </main>
+  </div>
+</div>
+
+</body>
+</html>

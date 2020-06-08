@@ -18,6 +18,6 @@ exports.grantAccess =(req,res,next) => {
 exports.allowIfLoggedin = (req, res, next) => {
 		if(req.isAuthenticated()) {
 				return next();
-		}		
-		res.send('you need to be logged in to access this page')
+		}			
+		res.redirect('/page');
 	}

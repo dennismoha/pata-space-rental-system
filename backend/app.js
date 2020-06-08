@@ -76,8 +76,7 @@ app.use((req,res,next)=> {
 	res.locals.currentUser = req.user;
 	res.locals.property_got = req.property
 	res.locals.sucess = req.flash('sucess');
-	res.locals.error =  req.flash('error');
-	res.locals.error_login =  req.flash('error_login');
+	res.locals.error =  req.flash('error');	
 	res.locals.messages =  req.flash('messages');
 	res.locals.message =  req.flash('message');
 	next();

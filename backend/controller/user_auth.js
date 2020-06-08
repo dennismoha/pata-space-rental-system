@@ -1,7 +1,6 @@
 const User = require('../model/users_singup');
 const bcrypt = require('bcrypt');
 // const {roles} = require('../roles')
-const jwt = require('jsonwebtoken')
 const AccessControl = require('accesscontrol');
 const ac = new AccessControl();
 

@@ -35,6 +35,9 @@ const propertySchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'reviews'
         }] ,
+        posted:{
+            type: String
+        },
         Owner: {
             id: {
                 type:mongoose.Schema.Types.ObjectId,
