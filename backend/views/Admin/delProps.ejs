@@ -1,0 +1,36 @@
+<%- include('../partials/admin/header'); %>
+<%- include('../partials/admin/navbar'); %>
+<%- include('../partials/admin/sidenav'); %> 
+
+ <div class = "container">
+    <div class="row">
+      <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">user</th>
+      <th scope="col">Total Deleted</th>
+      <th scope="col">deleted At</th>      
+    </tr>
+  </thead>
+  <tbody>
+
+     <% props.forEach(function(prop){%>
+        <tr>
+          <th scope="row">-</th>
+          <td><%=prop.user %></td>
+          <td> <%=prop.dels %></td>      
+          <td>Deleted on: <%=prop.createdAt %></td>         
+        </tr>  
+    <% }) %>
+  </tbody>
+</table>
+    </div>
+  </div>
+       
+      </div>
+    </main>
+  </div>
+</div>
+
+  <%- include('../partials/footers'); %>

@@ -1,6 +1,7 @@
 const User = require('../model/users_singup');
 const Property = require('../model/property');
 const Category = require('../model/category');
+const PropertyDel = require('../model/property_delete');
 const fs = require('fs-extra');
 
 
@@ -10,7 +11,7 @@ const landlord_property = (req,res)=> {
 	console.log('this is the properties page, the req.user is ', owners)
 	Property.find({Owner:{owner:owners}}).then((property)=> {
 		if(property) {
-			console.log(property)
+			
 			res.render('landlord/all_properties',{property:property})
 		}
 	}).catch((error)=> {
@@ -97,10 +98,59 @@ const landlord_edit_property = (req,res)=> {
 		})
 	}
 
+//posting an edited property
+const property_udpate =(req,res)=> {
+	var id = req.params.id;
+	console.log(req.body);
+
+}
+
+
+// //landlord property delete
+// const land_prop_delete = (req,res)=> {
+// 	const id = req.params.id;
+// 	const Owner  = req.params.Owner;
+// 	var dels = 0;
+// 	console.log('the req.params are ', req.params);
+
+	
+// 	fs.rmdir('public/images/'+ req.params.id,{recursive:true},function(err) {
+// 		if(err) {
+// 			throw err;
+// 			console.log('error deleting a propery', err)
+// 		}
+// 		Property.findByIdAndRemove(id,(err)=> {
+// 			if(err) {
+// 				throw err;
+				
+// 			}
+// 			dels++;	
+// 		var propdel = new PropertyDel({
+// 			dels:dels,
+// 			user : Owner
+// 		})
+// 		propdel.save().then((prop)=> {
+// 			if(prop) {
+// 				res.redirect('/landlord/landlord/owner/properties')
+// 			}
+// 		}).catch((error)=> {
+// 			throw error
+// 		})
+			
+			
+// 		})
+// 	});
+
+// }
+
 
 //landlord property delete
 const land_prop_delete = (req,res)=> {
 	const id = req.params.id;
+	const Owner  = req.params.Owner;
+	var dels = 0;
+	console.log('the req.params are ', req.params);
+
 	
 	fs.rmdir('public/images/'+ req.params.id,{recursive:true},function(err) {
 		if(err) {
@@ -111,29 +161,36 @@ const land_prop_delete = (req,res)=> {
 			if(err) {
 				throw err;
 				
+			}					
+
+		PropertyDel.findOneAndUpdate({user:Owner},{$inc:{dels : 1}},{new:true}).then((results)=> {
+			if(results) {
+				res.redirect('/landlord/landlord/owner/properties');				
+			}else if(!results) {
+
+				var propdel = new PropertyDel({
+					dels:dels,
+					user : Owner
+				})
+				propdel.save().then((prop)=> {
+					if(prop) {
+						res.redirect('/landlord/landlord/owner/properties')
+					}
+				}).catch((error)=> {
+					throw error
+				})				
 			}
-			res.redirect('/landlord/landlord/owner/properties')
+		}).catch((error)=> {
+			throw error;
+		})			
+			
 		})
 	});
 
-	//fs.rmdirSync works with node v 12.0 +
-
-	// fs.rmdirSync("public/images/"+req.params.id, {recursive: true}, (error) => { 
-	// 	if (error) { 
-	// 	  console.log(error); 
-	// 	} 
-	// 	else { 
-	// 		Property.findByIdAndRemove(id,(err)=> {
-	// 					if(err) {
-	// 						throw err;
-							
-	// 					}
-	// 					res.send('property removed successfully');
-	// 				})
-			
-	// 	} 
-	//   }); 
 }
+
+
+
 
 
 

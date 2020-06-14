@@ -21,8 +21,10 @@
 						    </div>
 			  		</div>
 				</div>
+				<%= property.Owner.owner%>
 				<a href="/landlord/landlord/edit/<%=property.id%>" class="btn btn-primary">Edit</a>   
-				 <a href="/landlord/landlord/delete/<%=property.id%>" class="btn btn-danger">delete</a>
+													  
+				 <a href="/landlord/landlord/delete/<%=property.Owner.owner%>/<%=property.id%>" class="btn btn-danger">delete</a>
 			</div>		
  		</div>
 	</div>     

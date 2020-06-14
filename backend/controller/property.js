@@ -8,6 +8,7 @@ const path = require('path')
 const moment = require('moment')
 const { check, validationResult } = require('express-validator');
 
+//creating a new property
 const new_property = (req,res)=> {
 	console.log('the req.body is',req.body)
 	var imageFile ;

@@ -1,5 +1,6 @@
 const User = require('../model/users_singup');
 const bcrypt = require('bcrypt')
+const delProp = require('../model/property_delete');
 
 //admin can create a new user
 //admin can create a new landlord
@@ -92,6 +93,18 @@ const getUsers = (req,res) => {
 		}).catch((err)=> {
 			throw err
 		})
+};
+
+//getting all the deleted property names
+const delProps = (req,res)=> {
+	delProp.find().then((props)=> {
+		if(props){
+			res.render('Admin/delProps',{props:props})
+		}
+	}).catch((Error)=> {
+		throw Error;
+	})
 }
 
-module.exports = {createUser,getUsers,regForm}
+
+module.exports = {createUser,getUsers,regForm,delProps};

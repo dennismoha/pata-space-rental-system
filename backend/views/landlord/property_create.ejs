@@ -38,11 +38,22 @@
 		    <small id="quantityHelp" class="form-text text-muted">enter quantity</small>
 		  </div>
 
-		   <div class="form-group">
-		    <label for="photo">sold</label>
-		    <input type="name" class="form-control" id="sold" aria-describedby="categoryHelp" placeholder="sold" name="sold">
-		    <small id="soldHelp" class="form-text text-muted">sold ?</small>
-		  </div>
+		  <%if(sold == ''){%>
+			<div class="form-group">
+				<label for="photo">sold</label>
+				<input type="name" class="form-control" id="sold" aria-describedby="categoryHelp" placeholder="sold" name="sold"  value='0' disabled>
+				<small id="soldHelp" class="form-text text-muted">sold ?</small>
+			  </div>
+		  <%}else {%>
+			<div class="form-group">
+				<label for="photo">sold</label>
+				<input type="name" class="form-control" id="sold" aria-describedby="categoryHelp" placeholder="sold" name="sold" value='<%=sold%>'>
+				<small id="soldHelp" class="form-text text-muted">sold ?</small>
+			  </div>
+
+		  <%}%>
+
+		 
 
 		  <div class="form-group">
 		    <label for="photo">photo</label>
