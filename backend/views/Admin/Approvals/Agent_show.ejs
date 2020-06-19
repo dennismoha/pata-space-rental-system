@@ -1,0 +1,47 @@
+<%# this shows the details of a single agent %>
+
+<%- include('../../partials/admin/header'); %>
+<%- include('../../partials/admin/navbar'); %>
+<%- include('../../partials/admin/sidenav'); %> 
+
+ <div class = "container">
+    <div class="row">
+      <%= user %>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+            <th scope="col">phone_number</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td><%=user.firstname %></td>
+            <td><%=user.lastname %></td>
+            <td><%=user.email %></td>
+            <td><%=user.role %></td>
+            <td><%=user.phone_number%></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <a href="/admin/admin/approve/<%=user.id%>" class="btn btn-primary">Approve</a> &nbsp  &nbsp
+      <a href="/admin/admin/disaprove/<%=user.id%>" class="btn btn-danger ">Disapprove</a>
+
+
+
+
+    </div>
+  </div>
+       
+      </div>
+    </main>
+  </div>
+</div>
+<%- include('../../partials/footers'); %>

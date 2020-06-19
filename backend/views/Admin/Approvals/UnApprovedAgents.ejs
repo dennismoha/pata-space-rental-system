@@ -1,0 +1,39 @@
+ <%- include('../../partials/admin/header'); %>
+<%- include('../../partials/admin/navbar'); %>
+<%- include('../../partials/admin/sidenav'); %> 
+
+ <div class = "container">
+    <div class="row">
+      <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">user</th>
+      <th scope="col">middle name</th>
+      <th scope="col">status</th>      
+    </tr>
+  </thead>
+  <tbody>
+
+     <% agent.forEach(function(prop){%>    
+      
+          <tr>            
+            <th scope="row">-</th>            
+            <td><a href="/admin//admin/singleUnapprovedagent/<%=prop.id%>"><%=prop.firstname %></a></td>
+            <td><a href=""><%=prop.lastname %></a> </td>      
+            <td> <%=prop.aprroved %></td>  
+                         
+          </tr> 
+              
+    <% }) %>
+    
+  </tbody>
+</table>
+    </div>
+  </div>
+       
+      </div>
+    </main>
+  </div>
+</div>
+<%- include('../../partials/footers'); %>

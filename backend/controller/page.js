@@ -13,6 +13,17 @@ const register_page = (req,res) => {
 	res.render('home/register')
 }
 
+//this is the agent_signup pagesignup_page
+const agent_register_page = (req,res) => {
+	res.render('home/agent_register')
+}
+
+//this is the agent_signup pagesignup_page
+const agency_register_page = (req,res) => {
+	res.render('home/agency_register')
+}
+
+
 //this is the login page render
 const login_page = (req,res) => {
 	res.render('home/login')
@@ -101,4 +112,4 @@ const user_edit =(req,res) => {
   
 module.exports = {login_page,landing_page,register_page,contact_page,about_page,
 	property_page,dashboard_page,admin_page,admin_contactPage,admin_aboutPage,home_about_page,
-	landlord_dashboard,landlord_create_property,add_category,user_edit}
+	landlord_dashboard,landlord_create_property,add_category,user_edit,agency_register_page,agent_register_page}

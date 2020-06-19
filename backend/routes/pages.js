@@ -7,6 +7,9 @@ const pageRoute = express.Router();
 
 pageRoute.get('/users/login',Pages.login_page);
 pageRoute.get('/users/signup_page',Pages.register_page);
+pageRoute.get('/users/agency_signup_page',Pages.agency_register_page);
+pageRoute.get('/users/agent_signup_page',Pages.agent_register_page);
+
 pageRoute.get('/users/about_page',Pages.home_about_page);
 pageRoute.get('/users/contact_page',roles.allowIfLoggedin,Pages.contact_page);
 pageRoute.get('/users/property_page', roles.allowIfLoggedin, Pages.property_page);
