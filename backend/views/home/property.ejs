@@ -22,51 +22,113 @@
 	<section class="page-section categories-page">
 		<div class="container">
 			<div class="row">
+				
 				<% property.forEach(function(property){%>
-				<div class="col-lg-4 col-md-6">
-					<!-- feature -->
-					<div class="feature-item">
-						<a target="_blank" href="/property/property/<%=property.id%>/show">
-							<div class="feature-pic set-bg" data-setbg="/images/<%=property.id%>/gallery/<%= property.photo %>">
-								<div class="sale-notic">FOR SALE</div>
-							</div>
-						</a>
-						
-						<div class="feature-text">
-							<div class="text-center feature-title">
-								<h5><%= property.title %></h5>
-								<p><i class="fa fa-map-marker"></i> Los Angeles, CA 90034</p>
-							</div>
-							<div class="room-info-warp">
-								<div class="room-info">
-									<div class="rf-left">
-										<p><i class="fa fa-th-large"></i> size</p>
-										<p><i class="fa fa-bed"></i> 10 Bedrooms</p>
-									</div>
-									<div class="rf-right">
-										<p><i class="fa fa-car"></i> extras eg parking</p>
-										<p><i class="fa fa-bath"></i> 6 Bathrooms</p>
-									</div>	
+				<%if (property.rentalMode == "sell") {%>
+					<div class="col-lg-4 col-md-6">
+						<!-- feature -->
+						<div class="feature-item">
+							<a target="_blank" href="/property/property/<%=property.id%>/show">
+								<div class="feature-pic set-bg show" onClick="myfunc()"  data-setbg="/images/<%=property.id%>/gallery/<%= property.photo %>">
+									
+									<div class="sale-notic"><h3> SALE</h3></div>
 								</div>
-								<div class="room-info">
-									<div class="rf-left">
-										<p><i class="fa fa-user"></i> <%=property.Owner.owner %></p>
-									</div>
-									<div class="rf-right">
-										<p><i class="fa fa-clock-o"></i> <%=property.posted%>/p>
-									</div>	
+							</a>
+							
+							<div class="feature-text">
+								<div class="text-center feature-title">
+									<h5><%= property.title %></h5>
+									<p><i class="fa fa-map-marker"></i> Los Angeles, CA 90034</p>
 								</div>
+								<div class="room-info-warp">
+									<div class="room-info">
+										<div class="rf-left">
+											<p><i class="fa fa-th-large"></i> size</p>
+											<p><i class="fa fa-bed"></i> 10 Bedrooms</p>
+										</div>
+										<div class="rf-right">
+											<p><i class="fa fa-car"></i> extras eg parking</p>
+											<p><i class="fa fa-bath"></i> 6 Bathrooms</p>
+										</div>	
+									</div>
+									<div class="room-info">
+										<div class="rf-left">
+											<p><i class="fa fa-user"></i> <%=property.Owner.owner %></p>
+											
+										</div>
+										<div class="rf-right">
+											<p><i class="fa fa-clock-o"></i> <%=property.posted%></p>
+											<p><i i class="fa fa-clock-o">For </i><%=property.rentalMode %></p>
+										</div>	
+									</div>
+								</div>
+								<a href="#" class="room-price">Ksh <%= property.price %></a>
+
 							</div>
-							<a href="#" class="room-price">Ksh <%= property.price %></a>
 						</div>
 					</div>
-				</div>
+				<%}%>				
+			
 				 <% }) %> 
 
 				
 					<!-- feature -->
 					
 				</div>
+				<hr style="background-color: azure;margin: 15px; width: 100%;">
+				<h3 style="text-align: center; margin: 20px;"> RENTAL PROPERTIES</h3>
+				<div class="row" style="margin: 10px;">
+					<% property.forEach(function(property){%>
+					<%if (property.rentalMode == "rent") {%>
+						<div class="col-lg-4 col-md-6">
+							<!-- feature -->
+							<div class="feature-item">
+								<a target="_blank"  href="/property/property/<%=property.id%>/show">
+									<div class="feature-pic set-bg"  data-setbg="/images/<%=property.id%>/gallery/<%= property.photo %>">
+										<div class="sale-notic">FOR RENTAL</div>
+									</div>
+								</a>
+								
+								<div class="feature-text">
+									<div class="text-center feature-title">
+										<h5><%= property.title %></h5>
+										<p><i class="fa fa-map-marker"></i> Los Angeles, CA 90034</p>
+									</div>
+									<div class="room-info-warp">
+										<div class="room-info">
+											<div class="rf-left">
+												<p><i class="fa fa-th-large"></i> size</p>
+												<p><i class="fa fa-bed"></i> 10 Bedrooms</p>
+											</div>
+											<div class="rf-right">
+												<p><i class="fa fa-car"></i> extras eg parking</p>
+												<p><i class="fa fa-bath"></i> 6 Bathrooms</p>
+											</div>	
+										</div>
+										<div class="room-info">
+											<div class="rf-left">
+												<p><i class="fa fa-user"></i> <%=property.Owner.owner %></p>
+											</div>
+											<div class="rf-right">
+												<p><i class="fa fa-clock-o"></i> <%=property.posted%></p>
+												<p><i i class="fa fa-clock-o"></i><%=property.rentalMode %></p>
+											</div>	
+										</div>
+									</div>
+									<a href="#" class="room-price">Ksh <%= property.price %></a>
+								</div>
+							</div>
+						</div>
+					<%}%>				
+				
+					 <% }) %> 
+	
+					
+						<!-- feature -->
+						
+					</div>
+
+
 			</div>
 			<div class="site-pagination">
 				<span>1</span>
@@ -101,7 +163,11 @@
 			</div>
 		</div>
 	</div> -->
+	<%#/property/interested/:id%>
 	<!-- Clients section end -->
+
+	
+
 
  <%- include('../partials/footer'); %>
 	

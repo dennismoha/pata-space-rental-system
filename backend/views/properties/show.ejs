@@ -1,6 +1,8 @@
 <%- include('../partials/header'); %>
+<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
 
 <!-- Page top section -->
+	
 	<section class="page-top-section set-bg" data-setbg="/images/page-top-bg.jpg">
 		<div class="container text-white">
 			<h2><%= property.title %></h2>
@@ -84,8 +86,9 @@
 							<%}%>
 
 								<% if(currentUser.role == 'landlord' || currentUser.role == 'admin') {%>
-									<a href ="" class="btn btn-danger" > delete image </a>
-									<a href ="" class="btn btn-primary"> edit image </a>
+									<a href ="" class="btn btn-danger" > delete image </a> &nbsp &nbsp
+									<a href ="" class="btn btn-primary"> edit image </a> &nbsp &nbsp &nbsp &nbsp
+									<a href="" class="btn btn-primary" id='interested' style="height: 30px">interested ? <%=property.interested%></a>
 								<%} %>
 						</div>
 						
@@ -189,7 +192,15 @@
 						<div class="container" >
 							<div class="row">
 								<div class="col-md-4 col-xl-4 col-lg-4 col-xs-4" id="cro">
+
 									<div id="test">
+
+										<script>
+											// $(document).ready(function(){
+											// 	alert('<%= property.id%>')
+											// })
+
+										</script>
 										
 									</div>
 									
@@ -211,7 +222,7 @@
 
 
 
-<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+
 
 
 
@@ -232,9 +243,20 @@
 					
 				})
 				var test = document.getElementById('test');
-				test.textContent = data.message
+				test.textContent = data.messageggg
 				console.log('the data is ',data)
 			}
+		});
+
+		$('#interested').click(function() {
+			$.ajax({
+				url : '/property/property/interested/<%= property.id%>/<%=currentUser.email%>/<%=currentUser._id%>/<%=property.title%>',
+				method:'GET',
+				success :function(data) {
+					console.log('the data is',data)
+				}
+
+			})
 		})
 	})
 	

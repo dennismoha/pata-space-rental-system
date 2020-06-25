@@ -38,13 +38,19 @@ const propertySchema = new mongoose.Schema({
         posted:{
             type: String
         },
+        rentalMode: {
+            type:String,
+            default:'rent',
+            enum:['rent','sell']
+        },
         Owner: {
             id: {
                 type:mongoose.Schema.Types.ObjectId,
                 ref: 'users_singup'
             },
             owner:String
-        }       
+        },
+        
 
 },{timestamps:true})
 

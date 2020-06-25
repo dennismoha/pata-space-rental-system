@@ -15,6 +15,8 @@ propRoute.get('/property/user_property_page',roles.allowIfLoggedin,roles.allowIf
 propRoute.get('/property/user_landing_property_page',Properties.user_landing_property_page);
 //show page for each property
 propRoute.get('/property/:id/show',roles.allowIfLoggedin,Properties.oneProperty)
+propRoute.get('/property/interested/:id/:email/:_id/:title',Properties.property_Interested);
+
 
 
 
