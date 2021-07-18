@@ -1,9 +1,9 @@
 
  # THIS WAS  A SCHOOL PERSONAL BASED PROJECT AND IN 2019 - 2020 . 
  
-##### Most of the code is not written in modern javascript and few updates made since then.
+##### Most of the code is not written in modern javascript and few updates have been made since then.
 
-## Pata space rental management system was a system written in :
+## Pata space rental management system was a system I designed and wrote using the following technologies :
 	1. Backend - Node.js (Express) / Postegres
 	2. Frontend - Javascript(Ajax for API calls), EJS templating, Html, bootstrap
 > The main purpose was to link users / people looking for property directly to agents /owners via pataspace management in a way to avoid online fraud
