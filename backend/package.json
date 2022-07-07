@@ -25,7 +25,7 @@
     "lodash": "^4.17.15",
     "method-override": "^3.0.0",
     "mkdirp": "^1.0.4",
-    "moment": "^2.25.3",
+    "moment": "^2.29.4",
     "mongoose": "^5.8.11",
     "morgan": "^1.10.0",
     "mv": "^2.1.1",
